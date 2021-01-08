@@ -1,7 +1,7 @@
 import React from "react";
-import { ITodoListItem } from "../Interfaces";
+import { ITodoListItemProps } from "../Interfaces";
 
-const TodoListItem: React.FC<ITodoListItem> = ({
+const TodoListItem: React.FC<ITodoListItemProps> = ({
   label,
   important = false,
 }) => {

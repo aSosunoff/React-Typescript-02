@@ -6,8 +6,8 @@ export type ITodo = {
     important: boolean;
 }
 
-export type ITodoListItem = OmitFromType<ITodo, "id">;
+export type ITodoListItemProps = OmitFromType<ITodo, "id">;
 
-export interface ITodoList {
+export interface ITodoListProps {
     todos?: ITodo[];
 }

@@ -1,8 +1,8 @@
 import React from "react";
-import { ITodoList } from "../Interfaces";
+import { ITodoListProps } from "../Interfaces";
 import TodoListItem from "./TodoListItem";
 
-const TodoList: React.FC<ITodoList> = ({ todos }) => {
+const TodoList: React.FC<ITodoListProps> = ({ todos }) => {
   return (
     <ul>
       {todos?.map(({ id, ...props }) => (
