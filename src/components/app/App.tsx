@@ -20,8 +20,8 @@ const App: React.FC = () => {
     <div className={styles.app}>
       <Header />
       <div className={styles.panel}>
-        <ItemStatusFilter />
         <SearchPanel />
+        <ItemStatusFilter />
       </div>
       <TodoList todos={todoDate} />
     </div>
