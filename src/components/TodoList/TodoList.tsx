@@ -8,7 +8,7 @@ const TodoList: React.FC = () => {
         <TodoListItem>Learn React</TodoListItem>
       </li>
       <li>
-        <TodoListItem>Build Awesome App</TodoListItem>
+        <TodoListItem important>Build Awesome App</TodoListItem>
       </li>
     </ul>
   );
