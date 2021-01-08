@@ -1,8 +1,10 @@
 import React, { useMemo } from "react";
 import Header from "../AppHeader";
 import { ITodo } from "../Interfaces";
+import ItemStatusFilter from "../ItemStatusFilter";
 import SearchPanel from "../SearchPanel";
 import TodoList from "../TodoList";
+import styles from "./App.module.scss";
 
 const App: React.FC = () => {
   const todoDate: ITodo[] = useMemo<ITodo[]>(
@@ -15,9 +17,12 @@ const App: React.FC = () => {
   );
 
   return (
-    <div>
+    <div className={styles.app}>
       <Header />
-      <SearchPanel />
+      <div className={styles.panel}>
+        <ItemStatusFilter />
+        <SearchPanel />
+      </div>
       <TodoList todos={todoDate} />
     </div>
   );
