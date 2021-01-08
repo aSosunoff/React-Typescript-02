@@ -1,10 +1,15 @@
 import React from "react";
+import TodoListItem from "./TodoListItem";
 
 const TodoList: React.FC = () => {
   return (
     <ul>
-      <li>Learn React</li>
-      <li>Build Awesome App</li>
+      <li>
+        <TodoListItem>Learn React</TodoListItem>
+      </li>
+      <li>
+        <TodoListItem>Build Awesome App</TodoListItem>
+      </li>
     </ul>
   );
 };
