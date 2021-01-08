@@ -1,14 +1,14 @@
 import React from "react";
+import Header from "../AppHeader";
+import SearchPanel from "../SearchPanel";
+import TodoList from "../TodoList";
 
 const App: React.FC = () => {
   return (
     <div>
-      <h1>My Todo List</h1>
-      <input placeholder="search" />
-      <ul>
-        <li>Learn React</li>
-        <li>Build Awesome App</li>
-      </ul>
+      <Header />
+      <SearchPanel />
+      <TodoList />
     </div>
   );
 };
