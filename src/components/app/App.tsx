@@ -5,6 +5,7 @@ import ItemStatusFilter from "../ItemStatusFilter";
 import SearchPanel from "../SearchPanel";
 import TodoList from "../TodoList";
 import styles from "./App.module.scss";
+import cn from "classnames";
 
 const App: React.FC = () => {
   const todoDate: ITodo[] = useMemo<ITodo[]>(
@@ -19,7 +20,7 @@ const App: React.FC = () => {
   return (
     <div className={styles.app}>
       <Header />
-      <div className={styles.panel}>
+      <div className={cn("d-flex", styles.panel)}>
         <SearchPanel />
         <ItemStatusFilter />
       </div>
