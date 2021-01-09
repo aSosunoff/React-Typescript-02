@@ -16,9 +16,7 @@ const TodoListItem: React.FC<ITodoListItemProps> = ({
     fontWeight: important ? "bold" : "normal",
   };
 
-  const labelClickHandler = () => {
-    setDone((prev) => !prev);
-  };
+  const labelClickHandler = () => setDone((prev) => !prev);
 
   return (
     <span className={cn(styles.item, { [styles.done]: done })}>
