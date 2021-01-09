@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useState } from "react";
 import Header from "../AppHeader";
 import { ITodo } from "../Interfaces";
 import ItemStatusFilter from "../ItemStatusFilter";
@@ -8,14 +8,24 @@ import styles from "./App.module.scss";
 import cn from "classnames";
 
 const App: React.FC = () => {
-  const todoDate: ITodo[] = useMemo<ITodo[]>(
-    () => [
-      { id: Date.now(), label: "Drink Coffe", important: false },
-      { id: Date.now() + 1, label: "Make Awesome App", important: true },
-      { id: Date.now() + 2, label: "Have a lunch", important: false },
-    ],
-    []
-  );
+  const [todos, setTodos] = useState<ITodo[]>([
+    { id: Date.now(), label: "Drink Coffe", important: false },
+    { id: Date.now() + 1, label: "Make Awesome App", important: true },
+    { id: Date.now() + 2, label: "Have a lunch", important: false },
+  ]);
+
+  const setImportantHandler = useCallback((id) => {
+    setTodos((prev) =>
+      prev.map((todo) =>
+        todo.id === id
+          ? {
+              ...todo,
+              important: !todo.important,
+            }
+          : todo
+      )
+    );
+  }, []);
 
   return (
     <div className={styles.app}>
@@ -24,7 +34,7 @@ const App: React.FC = () => {
         <SearchPanel />
         <ItemStatusFilter />
       </div>
-      <TodoList todos={todoDate} />
+      <TodoList todos={todos} setImportantHandler={setImportantHandler} />
     </div>
   );
 };

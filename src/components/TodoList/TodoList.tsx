@@ -4,12 +4,12 @@ import TodoListItem from "./TodoListItem";
 import cn from "classnames";
 import styles from "./TodoList.module.scss";
 
-const TodoList: React.FC<ITodoListProps> = ({ todos }) => {
+const TodoList: React.FC<ITodoListProps> = ({ todos, setImportantHandler }) => {
   return (
     <ul className={cn("list-group", styles.list)}>
-      {todos?.map(({ id, ...props }) => (
-        <li key={id} className={cn("list-group-item", styles.item)}>
-          <TodoListItem {...props} />
+      {todos?.map((props) => (
+        <li key={props.id} className={cn("list-group-item", styles.item)}>
+          <TodoListItem {...props} setImportantHandler={setImportantHandler} />
         </li>
       ))}
     </ul>

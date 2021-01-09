@@ -4,8 +4,10 @@ import { ITodoListItemProps } from "../Interfaces";
 import styles from "./TodoListItem.module.scss";
 
 const TodoListItem: React.FC<ITodoListItemProps> = ({
+  id,
   label,
   important = false,
+  setImportantHandler,
 }) => {
   const [done, setDone] = useState(false);
 
@@ -27,6 +29,7 @@ const TodoListItem: React.FC<ITodoListItemProps> = ({
       <button
         type="button"
         className="btn btn-outline-success btn-sm float-right"
+        onClick={setImportantHandler.bind(null, id)}
       >
         <i className="fa fa-exclamation" />
       </button>

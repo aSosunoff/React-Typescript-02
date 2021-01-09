@@ -1,4 +1,4 @@
-import { OmitFromType } from "./utils/UtilityTypes";
+/* import { OmitFromType } from "./utils/UtilityTypes"; */
 
 export type ITodo = {
     id: number;
@@ -6,8 +6,13 @@ export type ITodo = {
     important: boolean;
 }
 
-export type ITodoListItemProps = OmitFromType<ITodo, "id">;
+type ITodoListItemHandlerProps = {
+    setImportantHandler: (id: number) => void
+};
 
-export interface ITodoListProps {
+/* export type ITodoListItemProps = OmitFromType<ITodo, "id"> & ITodoListItemHandlerProps; */
+export type ITodoListItemProps = ITodo & ITodoListItemHandlerProps;
+
+export type ITodoListProps = {
     todos?: ITodo[];
-}
+} & ITodoListItemHandlerProps;
