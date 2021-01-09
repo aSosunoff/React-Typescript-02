@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import cn from "classnames";
 import { ITodoListItemProps } from "../Interfaces";
 import styles from "./TodoListItem.module.scss";
 
@@ -6,14 +7,20 @@ const TodoListItem: React.FC<ITodoListItemProps> = ({
   label,
   important = false,
 }) => {
+  const [done, setDone] = useState(false);
+
   const style: React.CSSProperties = {
     color: important ? "steelblue" : "black",
     fontWeight: important ? "bold" : "normal",
   };
 
+  const labelClickHandler = () => {
+    setDone((prev) => !prev);
+  };
+
   return (
-    <span className={styles.item}>
-      <span className={styles.label} style={style}>
+    <span className={cn(styles.item, { [styles.done]: done })}>
+      <span className={styles.label} style={style} onClick={labelClickHandler}>
         {label}
       </span>
 
