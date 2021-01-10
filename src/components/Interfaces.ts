@@ -7,7 +7,8 @@ export type ITodo = {
 }
 
 type ITodoListItemHandlerProps = {
-    setImportantHandler: (id: number) => void
+    onSetImportantHandler: (id: number) => void,
+    onDeleteHandler: (id: number) => void,
 };
 
 /* export type ITodoListItemProps = OmitFromType<ITodo, "id"> & ITodoListItemHandlerProps; */

@@ -7,7 +7,8 @@ const TodoListItem: React.FC<ITodoListItemProps> = ({
   id,
   label,
   important = false,
-  setImportantHandler,
+  onSetImportantHandler,
+  onDeleteHandler,
 }) => {
   const [done, setDone] = useState(false);
 
@@ -17,6 +18,8 @@ const TodoListItem: React.FC<ITodoListItemProps> = ({
   };
 
   const labelClickHandler = () => setDone((prev) => !prev);
+  const setImportantHandler = () => onSetImportantHandler(id);
+  const deleteHandler = () => onDeleteHandler(id);
 
   return (
     <span className={cn(styles.item, { [styles.done]: done })}>
@@ -27,7 +30,7 @@ const TodoListItem: React.FC<ITodoListItemProps> = ({
       <button
         type="button"
         className="btn btn-outline-success btn-sm float-right"
-        onClick={setImportantHandler.bind(null, id)}
+        onClick={setImportantHandler}
       >
         <i className="fa fa-exclamation" />
       </button>
@@ -35,6 +38,7 @@ const TodoListItem: React.FC<ITodoListItemProps> = ({
       <button
         type="button"
         className="btn btn-outline-danger btn-sm float-right"
+        onClick={deleteHandler}
       >
         <i className="fa fa-trash-o" />
       </button>

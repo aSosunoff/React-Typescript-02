@@ -14,7 +14,7 @@ const App: React.FC = () => {
     { id: Date.now() + 2, label: "Have a lunch", important: false },
   ]);
 
-  const setImportantHandler = useCallback((id) => {
+  const setImportantHandler = useCallback((id: number) => {
     setTodos((prev) =>
       prev.map((todo) =>
         todo.id === id
@@ -27,14 +27,25 @@ const App: React.FC = () => {
     );
   }, []);
 
+  const deleteHandler = useCallback(
+    (id: number) => setTodos((prev) => prev.filter((todo) => todo.id !== id)),
+    []
+  );
+
   return (
     <div className={styles.app}>
       <Header />
+
       <div className={cn("d-flex", styles.panel)}>
         <SearchPanel />
         <ItemStatusFilter />
       </div>
-      <TodoList todos={todos} setImportantHandler={setImportantHandler} />
+
+      <TodoList
+        todos={todos}
+        onSetImportantHandler={setImportantHandler}
+        onDeleteHandler={deleteHandler}
+      />
     </div>
   );
 };
