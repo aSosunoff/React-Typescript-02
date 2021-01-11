@@ -52,7 +52,7 @@ const ItemAddForm: React.FC = () => {
         value={label}
         onInput={inputHandler}
       />
-      <button className="btn btn-outline-primary">Добавить</button>
+      <button className="btn btn-outline-primary">Add</button>
     </form>
   );
 };
