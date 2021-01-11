@@ -1,5 +1,6 @@
 import React, { createContext, useCallback, useContext, useState } from "react";
-import { ITodo, TodoContextType } from "../components/Interfaces";
+import { TodoType } from "../components/Interfaces/TodoType";
+import { TodoContextType } from "../components/Interfaces/TodoContextType";
 import { PropsOther } from "../utils/UtilityTypes";
 
 const TodoContext = createContext<TodoContextType>({} as TodoContextType);
@@ -9,11 +10,11 @@ TodoContext.displayName = "TodoContext";
 export const useTodoContext = () => useContext(TodoContext);
 
 export const TodoProvider: React.FC<PropsOther> = ({ children }) => {
-  const createNewElement = useCallback((label: string): ITodo => {
+  const createNewElement = useCallback((label: string): TodoType => {
     return { id: Date.now(), important: false, label, done: false };
   }, []);
 
-  const [todos, setTodos] = useState<ITodo[]>([]);
+  const [todos, setTodos] = useState<TodoType[]>([]);
 
   const setImportantHandler = useCallback((id: number) => {
     setTodos((prev) =>

@@ -1,10 +1,10 @@
 import React from "react";
 import cn from "classnames";
-import { ITodo } from "../../Interfaces";
+import { TodoType } from "../../Interfaces/TodoType";
 import styles from "./Item.module.scss";
 import { useTodoContext } from "../../../context/todoContext";
 
-const TodoListItem: React.FC<ITodo> = ({ id, label, important, done }) => {
+const TodoListItem: React.FC<TodoType> = ({ id, label, important, done }) => {
   const {
     setImportantHandler,
     setDoneHandler,

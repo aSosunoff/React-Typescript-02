@@ -1,12 +1,7 @@
-export type ITodo = {
-  id: number;
-  label: string;
-  important: boolean;
-  done: boolean;
-}
+import { TodoType } from "./TodoType";
 
 export type TodoContextType = {
-  todos: ITodo[];
+  todos: TodoType[];
   setImportantHandler: (id: number) => void;
   setDoneHandler: (id: number) => void;
   deleteHandler: (id: number) => void;
