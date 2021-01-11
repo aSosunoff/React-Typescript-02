@@ -1,37 +1,14 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import Header from "../AppHeader";
-import { ITodo } from "../Interfaces";
 import ItemStatusFilter from "../ItemStatusFilter";
 import SearchPanel from "../SearchPanel";
 import TodoList from "../TodoList";
 import styles from "./App.module.scss";
 import cn from "classnames";
+import { withContext } from "../../HOC/withContext";
+import { TodoProvider } from "../../context/todoContext";
 
 const App: React.FC = () => {
-  const [todos, setTodos] = useState<ITodo[]>([
-    { id: Date.now(), label: "Drink Coffe", important: false },
-    { id: Date.now() + 1, label: "Make Awesome App", important: true },
-    { id: Date.now() + 2, label: "Have a lunch", important: false },
-  ]);
-
-  const setImportantHandler = useCallback((id: number) => {
-    setTodos((prev) =>
-      prev.map((todo) =>
-        todo.id === id
-          ? {
-              ...todo,
-              important: !todo.important,
-            }
-          : todo
-      )
-    );
-  }, []);
-
-  const deleteHandler = useCallback(
-    (id: number) => setTodos((prev) => prev.filter((todo) => todo.id !== id)),
-    []
-  );
-
   return (
     <div className={styles.app}>
       <Header />
@@ -41,13 +18,9 @@ const App: React.FC = () => {
         <ItemStatusFilter />
       </div>
 
-      <TodoList
-        todos={todos}
-        onSetImportantHandler={setImportantHandler}
-        onDeleteHandler={deleteHandler}
-      />
+      <TodoList />
     </div>
   );
 };
 
-export default App;
+export default withContext(TodoProvider, undefined, App);

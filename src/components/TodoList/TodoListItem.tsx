@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import cn from "classnames";
-import { ITodoListItemProps } from "../Interfaces";
+import { ITodo } from "../Interfaces";
 import styles from "./TodoListItem.module.scss";
+import { useTodoContext } from "../../context/todoContext";
 
-const TodoListItem: React.FC<ITodoListItemProps> = ({
-  id,
-  label,
-  important = false,
-  onSetImportantHandler,
-  onDeleteHandler,
-}) => {
+const TodoListItem: React.FC<ITodo> = ({ id, label, important = false }) => {
   const [done, setDone] = useState(false);
+
+  const { setImportantHandler, deleteHandler } = useTodoContext();
 
   const style: React.CSSProperties = {
     color: important ? "steelblue" : "black",
@@ -18,8 +15,6 @@ const TodoListItem: React.FC<ITodoListItemProps> = ({
   };
 
   const labelClickHandler = () => setDone((prev) => !prev);
-  const setImportantHandler = () => onSetImportantHandler(id);
-  const deleteHandler = () => onDeleteHandler(id);
 
   return (
     <span className={cn(styles.item, { [styles.done]: done })}>
@@ -30,7 +25,7 @@ const TodoListItem: React.FC<ITodoListItemProps> = ({
       <button
         type="button"
         className="btn btn-outline-success btn-sm float-right"
-        onClick={setImportantHandler}
+        onClick={setImportantHandler?.bind(null, id)}
       >
         <i className="fa fa-exclamation" />
       </button>
@@ -38,7 +33,7 @@ const TodoListItem: React.FC<ITodoListItemProps> = ({
       <button
         type="button"
         className="btn btn-outline-danger btn-sm float-right"
-        onClick={deleteHandler}
+        onClick={deleteHandler?.bind(null, id)}
       >
         <i className="fa fa-trash-o" />
       </button>
