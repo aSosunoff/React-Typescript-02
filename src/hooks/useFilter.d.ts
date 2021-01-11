@@ -1,4 +1,4 @@
-type typeFilter = 'list' | 'text' | 'button';
+type typeFilter = 'list' | 'text' | 'button' | 'checkbox';
 
 type CreateType<T extends typeFilter> = T extends typeFilter
   ? { type: T, detail: object }
@@ -15,18 +15,19 @@ type ButtonType = CreateType<'button'>
     handler: (callback: (value: string | number | null, additionalProperties?: object) => void) => void
   }
 
+type CheckboxType = CreateType<'checkbox'>;
+
 type _TSettings = {
-  [K: string]: { filter: ListType | TextType | ButtonType }
+  [K: string]: { filter: ListType | TextType | ButtonType | CheckboxType }
 }
 
-export type FilterReturnType<TItem extends object = {}> = {
+
+export const useFilter = <TItem extends object, TSettings extends _TSettings, TFilterReturnType extends {
   filteredList: TItem[],
   filterState: object,
   filterPanel: object,
   isFilter: boolean,
-  setFilterHandler: (field: string, value: string | number | null, additionalProperties?: object) => void,
+  setFilterHandler: (field: string, value: string | number | boolean | null, additionalProperties?: object) => void,
   clearFilterHandler: () => void,
-}
-
-export const useFilter = <TItem extends object, TSettings extends _TSettings>
-  (list: TItem[], settings: TSettings): FilterReturnType<TItem> => ({}) as FilterReturnType<TItem>;
+}>
+  (list: TItem[], settings: TSettings): TFilterReturnType => ({}) as TFilterReturnType;

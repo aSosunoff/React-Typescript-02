@@ -16,6 +16,8 @@ export const useFilter = (list, settings) => {
                 return res && item[prop] >= from && item[prop] <= to;
               case "date":
                 return res && item[prop] === value;
+              case "checkbox":
+                return res && item[prop] === value;
               default:
                 return (
                   res &&
@@ -48,12 +50,13 @@ export const useFilter = (list, settings) => {
 
   const setFilterHandler = useCallback(
     (field, value, additionalProperties) => {
-      if (value || value === 0 || value === "0") {
-        const { detail } = filterPanel[field];
+      if (value || value === 0 || value === "0" || value === false) {
+        const { detail, type } = filterPanel[field];
 
         setFilterState((prev) => ({
           ...prev,
           [field]: {
+            type,
             ...additionalProperties,
             value,
             detail,
