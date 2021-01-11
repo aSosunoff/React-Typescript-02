@@ -26,7 +26,7 @@ const App: React.FC = () => {
         <ItemStatusFilter />
       </div>
 
-      <TodoList />
+      <TodoList todos={todos} />
 
       <ItemAddForm />
     </div>
