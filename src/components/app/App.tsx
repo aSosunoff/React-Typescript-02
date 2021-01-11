@@ -7,6 +7,7 @@ import styles from "./App.module.scss";
 import cn from "classnames";
 import { withContext } from "../../HOC/withContext";
 import { TodoProvider } from "../../context/todoContext";
+import ItemAddForm from "../ItemAddForm";
 
 const App: React.FC = () => {
   return (
@@ -19,6 +20,8 @@ const App: React.FC = () => {
       </div>
 
       <TodoList />
+
+      <ItemAddForm />
     </div>
   );
 };

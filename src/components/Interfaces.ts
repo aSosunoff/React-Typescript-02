@@ -8,4 +8,5 @@ export type TodoContextType = {
   todos: ITodo[];
   setImportantHandler: (id: number) => void;
   deleteHandler: (id: number) => void;
+  addHandler: (text: string) => void;
 };

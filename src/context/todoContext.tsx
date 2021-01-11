@@ -33,12 +33,22 @@ export const TodoProvider: React.FC<PropsOther> = ({ children }) => {
     []
   );
 
+  const addHandler = useCallback(
+    (text: string) =>
+      setTodos((prev) => [
+        { id: Date.now(), important: false, label: text },
+        ...prev,
+      ]),
+    []
+  );
+
   return (
     <TodoContext.Provider
       value={{
         todos,
         setImportantHandler,
         deleteHandler,
+        addHandler,
       }}
     >
       {children}
