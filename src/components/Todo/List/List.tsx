@@ -1,8 +1,8 @@
 import React from "react";
-import TodoListItem from "./TodoListItem";
+import TodoListItem from "../Item/Item";
 import cn from "classnames";
-import styles from "./TodoList.module.scss";
-import { useTodoContext } from "../../context/todoContext";
+import styles from "./List.module.scss";
+import { useTodoContext } from "../../../context/todoContext";
 
 const TodoList: React.FC = () => {
   const { todos } = useTodoContext();

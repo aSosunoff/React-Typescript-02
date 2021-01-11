@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import cn from "classnames";
-import { ITodo } from "../Interfaces";
-import styles from "./TodoListItem.module.scss";
-import { useTodoContext } from "../../context/todoContext";
+import { ITodo } from "../../Interfaces";
+import styles from "./Item.module.scss";
+import { useTodoContext } from "../../../context/todoContext";
 
 const TodoListItem: React.FC<ITodo> = ({ id, label, important = false }) => {
   const [done, setDone] = useState(false);

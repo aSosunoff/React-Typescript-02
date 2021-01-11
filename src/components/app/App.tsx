@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../AppHeader";
 import ItemStatusFilter from "../ItemStatusFilter";
 import SearchPanel from "../SearchPanel";
-import TodoList from "../TodoList";
+import TodoList from "../Todo";
 import styles from "./App.module.scss";
 import cn from "classnames";
 import { withContext } from "../../HOC/withContext";
