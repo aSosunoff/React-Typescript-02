@@ -2,11 +2,10 @@ import React, { createContext, useCallback, useContext, useState } from "react";
 import { TodoType } from "../components/Interfaces/TodoType";
 import { TodoContextType } from "../components/Interfaces/TodoContextType";
 import { PropsOther } from "../utils/UtilityTypes";
-import { useFilter } from "../hooks/useFilter";
+import { useFilter, FilterReturnType } from "../hooks/useFilter";
 
-type TodoContextFilterType = TodoContextType & {
-  setFilterHandler: (...props: any[]) => any;
-};
+type TodoContextFilterType = TodoContextType &
+  Pick<FilterReturnType, "setFilterHandler">;
 
 const TodoContext = createContext<TodoContextFilterType>(
   {} as TodoContextFilterType
@@ -27,6 +26,7 @@ export const TodoProvider: React.FC<PropsOther> = ({ children }) => {
     label: {
       filter: {
         type: "text",
+        detail: {},
       },
     },
   });
