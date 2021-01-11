@@ -2,18 +2,18 @@ import React, { createContext, useCallback, useContext, useState } from "react";
 import { ITodo, TodoContextType } from "../components/Interfaces";
 import { PropsOther } from "../utils/UtilityTypes";
 
-const TodoContext = createContext<Partial<TodoContextType>>({});
+const TodoContext = createContext<TodoContextType>({} as TodoContextType);
 
 TodoContext.displayName = "TodoContext";
 
 export const useTodoContext = () => useContext(TodoContext);
 
 export const TodoProvider: React.FC<PropsOther> = ({ children }) => {
-  const [todos, setTodos] = useState<ITodo[]>([
-    { id: Date.now(), label: "Drink Coffe", important: false },
-    { id: Date.now() + 1, label: "Make Awesome App", important: true },
-    { id: Date.now() + 2, label: "Have a lunch", important: false },
-  ]);
+  const createNewElement = useCallback((label: string): ITodo => {
+    return { id: Date.now(), important: false, label, done: false };
+  }, []);
+
+  const [todos, setTodos] = useState<ITodo[]>([]);
 
   const setImportantHandler = useCallback((id: number) => {
     setTodos((prev) =>
@@ -28,18 +28,27 @@ export const TodoProvider: React.FC<PropsOther> = ({ children }) => {
     );
   }, []);
 
+  const setDoneHandler = useCallback((id: number) => {
+    setTodos((prev) =>
+      prev.map((todo) =>
+        todo.id === id
+          ? {
+              ...todo,
+              done: !todo.done,
+            }
+          : todo
+      )
+    );
+  }, []);
+
   const deleteHandler = useCallback(
     (id: number) => setTodos((prev) => prev.filter((todo) => todo.id !== id)),
     []
   );
 
   const addHandler = useCallback(
-    (text: string) =>
-      setTodos((prev) => [
-        { id: Date.now(), important: false, label: text },
-        ...prev,
-      ]),
-    []
+    (text: string) => setTodos((prev) => [createNewElement(text), ...prev]),
+    [createNewElement]
   );
 
   return (
@@ -47,6 +56,7 @@ export const TodoProvider: React.FC<PropsOther> = ({ children }) => {
       value={{
         todos,
         setImportantHandler,
+        setDoneHandler,
         deleteHandler,
         addHandler,
       }}

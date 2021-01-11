@@ -3,16 +3,16 @@ import cn from "classnames";
 import styles from "./AppHeader.module.scss";
 
 type AppHeaderType = {
-  todo?: number;
-  done?: number;
+  todoCount: number;
+  doneCount: number;
 };
 
-const AppHeader: React.FC<AppHeaderType> = ({ done = 0, todo = 0 }) => {
+const AppHeader: React.FC<AppHeaderType> = ({ doneCount, todoCount }) => {
   return (
     <div className={cn(styles.header, "d-flex")}>
       <h1>Todo List</h1>
       <h2>
-        {todo} more to do, {done} done
+        {todoCount} more to do, {doneCount} done
       </h2>
     </div>
   );

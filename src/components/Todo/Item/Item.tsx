@@ -1,31 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
 import cn from "classnames";
 import { ITodo } from "../../Interfaces";
 import styles from "./Item.module.scss";
 import { useTodoContext } from "../../../context/todoContext";
 
-const TodoListItem: React.FC<ITodo> = ({ id, label, important = false }) => {
-  const [done, setDone] = useState(false);
-
-  const { setImportantHandler, deleteHandler } = useTodoContext();
+const TodoListItem: React.FC<ITodo> = ({ id, label, important, done }) => {
+  const {
+    setImportantHandler,
+    setDoneHandler,
+    deleteHandler,
+  } = useTodoContext();
 
   const style: React.CSSProperties = {
     color: important ? "steelblue" : "black",
     fontWeight: important ? "bold" : "normal",
   };
 
-  const labelClickHandler = () => setDone((prev) => !prev);
-
   return (
     <span className={cn(styles.item, { [styles.done]: done })}>
-      <span className={styles.label} style={style} onClick={labelClickHandler}>
+      <span
+        className={styles.label}
+        style={style}
+        onClick={() => setDoneHandler(id)}
+      >
         {label}
       </span>
 
       <button
         type="button"
         className="btn btn-outline-success btn-sm float-right"
-        onClick={setImportantHandler?.bind(null, id)}
+        onClick={() => setImportantHandler(id)}
       >
         <i className="fa fa-exclamation" />
       </button>
@@ -33,7 +37,7 @@ const TodoListItem: React.FC<ITodo> = ({ id, label, important = false }) => {
       <button
         type="button"
         className="btn btn-outline-danger btn-sm float-right"
-        onClick={deleteHandler?.bind(null, id)}
+        onClick={() => deleteHandler(id)}
       >
         <i className="fa fa-trash-o" />
       </button>
